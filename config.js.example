@@ -1,0 +1,12 @@
+module.exports = {
+  username: 'username',
+  password: 'password',
+  airport: '5446',
+  twilio: {
+    accountSid: 'SID',
+    authToken: 'TOKEN',
+    serviceSid: 'SID',
+    toNumber: '+11234567890',
+    fromNumber: '+11234567890',
+  },
+};
