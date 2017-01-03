@@ -8,15 +8,19 @@ This script automatically checks the Global Entry interview schedule for your gi
 
 1. Clone this repo
 2. Install casper, phantom
-  ```
-  npm install -g phantomjs
-  npm install -g casperjs
-  ```
+
+    ```
+    npm install -g phantomjs
+    npm install -g casperjs
+    ```
+
 3. Make a Twilio account / messaging service / phone number: [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
 4. Make a config file
-  ```
-  cp config.js.example config.js
-  ```
+
+    ```
+    cp config.js.example config.js
+    ```
+
 5. Write your information to the config file
   - username: your GOES username
   - password: your GOES password
@@ -26,11 +30,16 @@ This script automatically checks the Global Entry interview schedule for your gi
   - serviceSid: your Twilio Messaging service
   - toNumber: the phone number you want to be sending texts to
   - fromNumber: your Twilio phone number
-6. set up a cronjob to run the script
-  ```
-  crontab -e
-  ```
-  then add
-  ```
-  */5 * * * * /PATH/TO/SCRIPT/goes.sh
-  ```
+6. Set up a cronjob to run the script
+
+    ```
+    crontab -e
+    ```
+
+    then add
+
+    ```
+    */5 * * * * /PATH/TO/SCRIPT/goes.sh
+    ```
+
+7. You should be all set.
