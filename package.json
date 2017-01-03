@@ -1,12 +1,12 @@
 {
   "name": "goes",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Goes text subscriber",
   "main": "index.js",
   "author": "Oliver Song",
   "license": "MIT",
   "scripts": {
-    "main": "casperjs index.js"
+    "main": "bash goes.sh"
   },
   "dependencies": {},
   "devDependencies": {}
