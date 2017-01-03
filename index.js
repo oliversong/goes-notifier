@@ -1,5 +1,8 @@
+var require = patchRequire(require);
 var config = require('./config');
 var casper = require('casper').create({
+  verbose: true,
+  logLevel: "debug",
   clientScripts: ['./jquery.min.js'],
 });
 var twilio = require('twilio');
@@ -18,8 +21,6 @@ function CasperException(message, stack) {
   this.message = message;
   this.stack = stack;
 }
-
-this.echo('ello');
 
 casper.on('error', function(msg, backtrace) {
   this.echo('Exception: ' + msg + backtrace);
