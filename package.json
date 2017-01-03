@@ -8,8 +8,6 @@
   "scripts": {
     "main": "casperjs index.js"
   },
-  "dependencies": {
-    "twilio": "^2.11.1"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }

@@ -1,20 +1,19 @@
-var require = patchRequire(require);
 var config = require('./config');
 var casper = require('casper').create({
-  verbose: true,
-  logLevel: "debug",
   clientScripts: ['./jquery.min.js'],
 });
-var twilio = require('twilio');
 
 var url = 'https://goes-app.cbp.dhs.gov/goes/jsp/login.jsp';
 var username = config.username;
 var password = config.password;
 var airport = config.airport;
-var providedDay;
-var client = twilio(config.twilio.accountSid, config.twilio.authToken);
+var accountSid = config.twilio.accountSid;
+var serviceSid = config.twilio.serviceSid;
+var authToken = config.twilio.authToken;
 var toNumber = config.twilio.toNumber;
 var fromNumber = config.twilio.fromNumber;
+var providedDay;
+var notify;
 
 function CasperException(message, stack) {
   this.name = 'CasperException';
@@ -125,17 +124,33 @@ casper.then(function() {
   );
   this.echo('Number of days away: ' + numDays);
 
-  client.sendMessage({
-    to: toNumber,
-    from: fromNumber,
-    body: 'New appointment slot available within a month',
-  });
-
   if (numDays < 30) {
-    // twilio text
+    notify = true;
     this.echo('New appointment slot available within a month');
   } else {
+    notify = false;
     this.echo('No appointment slots available within a month');
+  }
+});
+
+casper.then(function() {
+  if (notify) {
+    this.echo('Sending twilio request...');
+    this.open(
+      'https://' + accountSid + ':' + authToken + '@' +
+      'api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages',
+      {
+        method: 'post',
+        data: {
+          To: toNumber,
+          From: fromNumber,
+          Body: 'New appointment slot open: ' + providedDay,
+          MessagingServiceSid: serviceSid,
+        },
+      }
+    ).then(function() {
+      require('utils').dump(this.getPageContent());
+    });
   }
 });
 
