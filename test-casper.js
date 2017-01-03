@@ -83,7 +83,7 @@ casper.then(function() {
 casper.then(function() {
   this.echo('Airport dropdown found, selecting next...');
   this.evaluate(function() {
-    $('#selectedEnrollmentCenter').value = 5446;
+    $('#selectedEnrollmentCenter').val('5446')
     $('input[name=next]').click();
   });
 });
@@ -91,6 +91,10 @@ casper.then(function() {
 casper.then(function() {
   this.echo('Waiting on calendar to render...');
   this.waitForSelector('.date');
+});
+
+casper.wait(1000, function() {
+  this.echo('Waited an extra second...');
 });
 
 casper.then(function() {
@@ -128,5 +132,5 @@ casper.then(function() {
 
 casper.run(function() {
   this.echo('Done');
-  return;
+  this.exit();
 });
