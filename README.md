@@ -39,7 +39,14 @@ This script automatically checks the Global Entry interview schedule for your gi
     then add
 
     ```
-    */5 * * * * /PATH/TO/SCRIPT/goes.sh
+    */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
+    ```
+
+    Common pitfall: your cron setup may or may not have PATH set up correctly. If it doesn't, you need to set PATH to include the directory where your `casperjs` cli is located. You can find this out with `which casperjs`.
+
+    ```
+    PATH=/usr/local/bin
+    */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
     ```
 
 7. You should be all set.
