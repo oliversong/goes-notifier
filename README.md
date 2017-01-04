@@ -4,6 +4,8 @@ Interview wait times for a TSA Global Entry interview at SFO are (as of Jan 2017
 
 This script automatically checks the Global Entry interview schedule for your given airport and texts you when there's an appointment available within 30 days, allowing you to "snipe" a cancelled appointment.
 
+![Text notifications](https://cloud.githubusercontent.com/assets/546651/21631739/0f80d532-d20d-11e6-8af9-5ceba4ec11d3.png)
+
 ## Setup
 
 1. Clone this repo
