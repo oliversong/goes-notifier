@@ -22,14 +22,18 @@ This script automatically checks the Global Entry interview schedule for your gi
     ```
 
 5. Write your information to the config file
-  - username: your GOES username
-  - password: your GOES password
-  - airport: code for the airport you want to subscribe to (SFO is 5446)
-  - accountSid: your Twilio account SID
-  - authToken: your Twilio production auth token
-  - serviceSid: your Twilio Messaging service
-  - toNumber: the phone number you want to be sending texts to
-  - fromNumber: your Twilio phone number
+
+  | Config var | Explanation                                                 |
+  |------------|-------------------------------------------------------------|
+  | username   | your GOES username                                          |
+  | password   | your GOES password                                          |
+  | airport    | code for the airport you want to subscribe to (SFO is 5446) |
+  | accountSid | your Twilio account SID                                     |
+  | authToken  | your Twilio production auth token                           |
+  | serviceSid | your Twilio Messaging service                               |
+  | toNumber   | the phone number you want to be sending texts to            |
+  | fromNumber | your Twilio phone number                                    |
+
 6. Set up a cronjob to run the script
 
     ```
