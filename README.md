@@ -4,6 +4,8 @@ Interview wait times for a TSA Global Entry interview at SFO are (as of Jan 2017
 
 This script automatically checks the Global Entry interview schedule for your given airport and texts you when there's an appointment available within 30 days, allowing you to "snipe" a cancelled appointment.
 
+![Text notifications](https://cloud.githubusercontent.com/assets/546651/21631739/0f80d532-d20d-11e6-8af9-5ceba4ec11d3.png)
+
 ## Setup
 
 1. Clone this repo
@@ -28,14 +30,18 @@ This script automatically checks the Global Entry interview schedule for your gi
     ```
 
 6. Write your information to the config file
-  - username: your GOES username
-  - password: your GOES password
-  - airport: code for the airport you want to subscribe to (SFO is 5446)
-  - accountSid: your Twilio account SID
-  - authToken: your Twilio production auth token
-  - serviceSid: your Twilio Messaging service
-  - toNumber: the phone number you want to be sending texts to
-  - fromNumber: your Twilio phone number
+
+  | Config var | Explanation                                                 |
+  |------------|-------------------------------------------------------------|
+  | username   | your GOES username                                          |
+  | password   | your GOES password                                          |
+  | airport    | code for the airport you want to subscribe to (SFO is 5446) |
+  | accountSid | your Twilio account SID                                     |
+  | authToken  | your Twilio production auth token                           |
+  | serviceSid | your Twilio Messaging service                               |
+  | toNumber   | the phone number you want to be sending texts to            |
+  | fromNumber | your Twilio phone number                                    |
+
 7. Set up a cronjob to run the script
 
     ```
