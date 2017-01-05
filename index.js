@@ -2,7 +2,23 @@ var config = require('./config');
 var casper = require('casper').create({
   clientScripts: ['./jquery.min.js'],
 });
+var OAuth = require('oauth-1.0a');
+var jsSHA = require('jssha');
 
+
+var oauth = OAuth({
+  consumer: {
+    key: config.twitter.consumerKey,
+    secret: config.twitter.consumerSecret,
+  },
+  signature_method: 'HMAC-SHA1',
+  hash_function: function(base_string, key) {
+    var shaObj = new jsSHA('SHA-1', 'TEXT');
+    shaObj.setHMACKey(key, 'TEXT');
+    shaObj.update(base_string);
+    return shaObj.getHMAC('B64');
+  },
+});
 var url = 'https://goes-app.cbp.dhs.gov/goes/jsp/login.jsp';
 var username = config.username;
 var password = config.password;
@@ -12,6 +28,12 @@ var serviceSid = config.twilio.serviceSid;
 var authToken = config.twilio.authToken;
 var toNumber = config.twilio.toNumber;
 var fromNumber = config.twilio.fromNumber;
+var twitterLinked = (
+  config.twitter.accessToken &&
+  config.twitter.accessTokenSecret &&
+  config.twitter.consumerKey &&
+  config.twitter.consumerSecret
+);
 var providedDay;
 var notify;
 
@@ -124,7 +146,7 @@ casper.then(function() {
   );
   this.echo('Number of days away: ' + numDays);
 
-  if (numDays < 30) {
+  if (numDays < 200) {
     notify = true;
     this.echo('New appointment slot available within a month');
   } else {
@@ -151,6 +173,32 @@ casper.then(function() {
     ).then(function() {
       require('utils').dump(this.getPageContent());
     });
+  }
+});
+
+casper.then(function() {
+  if (twitterLinked && notify) {
+    this.echo('Sending twitter request...');
+    var message = 'New appointment slot open: ' + providedDay;
+    var requestData = {
+      url: 'https://api.twitter.com/1.1/statuses/update.json',
+      method: 'POST',
+      data: {
+        status: message,
+      },
+    };
+    var token = {
+      key: config.twitter.accessToken,
+      secret: config.twitter.accessTokenSecret,
+    };
+    this.open(
+      requestData.url,
+      {
+        method: requestData.method,
+        data: requestData.data,
+        headers: oauth.toHeader(oauth.authorize(requestData, token)),
+      }
+    );
   }
 });
 

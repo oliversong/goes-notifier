@@ -8,6 +8,9 @@
   "scripts": {
     "main": "bash goes.sh"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jssha": "^2.2.0",
+    "oauth-1.0a": "^2.0.0"
+  },
   "devDependencies": {}
 }

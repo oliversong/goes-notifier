@@ -9,4 +9,10 @@ module.exports = {
     toNumber: '+11234567890',
     fromNumber: '+11234567890',
   },
+  twitter: {
+    accessToken: '',
+    accessTokenSecret: '',
+    consumerKey: '',
+    consumerSecret: '',
+  },
 };
