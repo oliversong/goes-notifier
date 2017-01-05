@@ -42,6 +42,8 @@ This script automatically checks the Global Entry interview schedule for your gi
   | toNumber   | the phone number you want to be sending texts to            |
   | fromNumber | your Twilio phone number                                    |
 
+  Optional: you can also add Twitter OAuth credentials to post to Twitter.
+
 7. Set up a cronjob to run the script
 
     ```
