@@ -1,5 +1,7 @@
 # GOES notifier
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![GitHub version](https://badge.fury.io/gh/oliversong%2Fgoes-notifier.svg)](https://badge.fury.io/gh/oliversong%2Fgoes-notifier)
+
 Currently live at: https://twitter.com/GOESbot
 
 Interview wait times for a TSA Global Entry interview at SFO are (as of Jan 2017) about 6 months. However, if you get lucky you might be able to get an interview slot that someone else reschedules.
