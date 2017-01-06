@@ -1,8 +1,10 @@
 # GOES notifier
 
+Currently live at: https://twitter.com/GOESbot
+
 Interview wait times for a TSA Global Entry interview at SFO are (as of Jan 2017) about 6 months. However, if you get lucky you might be able to get an interview slot that someone else reschedules.
 
-This script automatically checks the Global Entry interview schedule for your given airport and texts you when there's an appointment available within 30 days, allowing you to "snipe" a cancelled appointment.
+This script automatically checks the Global Entry interview schedule for your given airport and texts you and/or tweets when there's an appointment available within 30 days, allowing you to "snipe" a cancelled appointment.
 
 ![Text notifications](https://cloud.githubusercontent.com/assets/546651/21631739/0f80d532-d20d-11e6-8af9-5ceba4ec11d3.png)
 
