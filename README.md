@@ -40,6 +40,7 @@ This script automatically checks the Global Entry interview schedule for your gi
   | username   | your GOES username                                          |
   | password   | your GOES password                                          |
   | airport    | code for the airport you want to subscribe to (SFO is 5446) |
+  | threshold  | number of days to check                                     |
   | accountSid | your Twilio account SID                                     |
   | authToken  | your Twilio production auth token                           |
   | serviceSid | your Twilio Messaging service                               |
