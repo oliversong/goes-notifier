@@ -6,7 +6,8 @@
   "author": "Oliver Song",
   "license": "MIT",
   "scripts": {
-    "main": "bash goes.sh"
+    "main": "bash goes.sh",
+    "zip": "zip -r archive.zip node_modules index.js goes.sh config.js jquery.min.js"
   },
   "dependencies": {
     "casperjs": "^1.1.3",

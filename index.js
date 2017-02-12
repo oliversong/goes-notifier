@@ -133,8 +133,8 @@ casper.then(function() {
 
   var nextDay = new Date(providedDay);
   var today = new Date();
-  console.log('Next available: ' + nextDay);
-  console.log('Today: ' + today);
+  this.echo('Next available: ' + nextDay, 'INFO');
+  this.echo('Today: ' + today);
   var oneDay = 1000 * 60 * 60 * 24;
   var numDays = Math.ceil(
     (nextDay.getTime() - today.getTime()) / (oneDay)
@@ -143,10 +143,10 @@ casper.then(function() {
 
   if (numDays < config.threshold) {
     notify = true;
-    this.echo('New appointment slot available within threshold');
+    this.echo('New appointment slot available within threshold', 'CRITICAL');
   } else {
     notify = false;
-    this.echo('No appointment slots available within threshold');
+    this.echo('No appointment slots available within threshold', 'CRITICAL');
   }
 });
 
