@@ -143,10 +143,10 @@ casper.then(function() {
 
   if (numDays < config.threshold) {
     notify = true;
-    this.echo('New appointment slot available within a month');
+    this.echo('New appointment slot available within threshold');
   } else {
     notify = false;
-    this.echo('No appointment slots available within a month');
+    this.echo('No appointment slots available within threshold');
   }
 });
 
