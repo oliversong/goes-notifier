@@ -106,31 +106,25 @@ casper.then(function() {
 
 casper.then(function() {
   this.echo('Waiting on airport dropdown...');
-  this.waitForSelector('#selectedEnrollmentCenter');
+  this.waitForSelector("input[value='"+airport+"']");
 });
 
 casper.then(function() {
   this.echo('Airport dropdown found, selecting next...');
-  this.evaluate(function(a) {
-    $('#selectedEnrollmentCenter').val(a);
+  this.evaluate(function(airport) {
+    $("input[value='"+airport+"']").click();
     $('input[name=next]').click();
   }, airport);
 });
 
 casper.then(function() {
   this.echo('Waiting on calendar to render...');
-  this.waitForSelector('.date');
-});
-
-casper.then(function() {
-  this.echo('Calendar found. Parsing date...');
-  providedDay = this.evaluate(function() {
-    var day = $('.date td')[0].innerHTML;
-    console.log(day);
-    var monthYear = $('.date div')[1].innerText;
-    console.log(monthYear);
-    return day + ' ' + monthYear;
-  });
+  this.waitForSelector(".entry");
+  // grab onclick function of the first element because it has a date embedded
+  var onClickFunction = this.getElementsAttribute('.entry', 'onclick');
+  var d = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/.exec(onClickFunction);
+  var rawDate = d[1] + '/' + d[2] + '/' + d[3] + ' ' + d[4] + ':' + d[5]; // 2017/01/01 00:00
+  providedDay = new Date(Date.parse(rawDate));
 });
 
 casper.then(function() {
@@ -138,8 +132,8 @@ casper.then(function() {
 
   var nextDay = new Date(providedDay);
   var today = new Date();
-  console.log('Next available: ' + nextDay);
-  console.log('Today: ' + today);
+  this.echo('Next available: ' + nextDay, 'INFO');
+  this.echo('Today: ' + today);
   var oneDay = 1000 * 60 * 60 * 24;
   var numDays = Math.ceil(
     (nextDay.getTime() - today.getTime()) / (oneDay)
@@ -148,10 +142,10 @@ casper.then(function() {
 
   if (numDays < config.threshold) {
     notify = true;
-    this.echo('New appointment slot available within a month');
+    this.echo('New appointment slot available within threshold', 'CRITICAL');
   } else {
     notify = false;
-    this.echo('No appointment slots available within a month');
+    this.echo('No appointment slots available within threshold', 'CRITICAL');
   }
 });
 

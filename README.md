@@ -19,21 +19,14 @@ This script automatically checks the Global Entry interview schedule for your gi
     npm install
     ```
 
-3. Install global dependencies: casper, phantom
-
-    ```
-    npm install -g phantomjs
-    npm install -g casperjs
-    ```
-
-4. Make a Twilio account / messaging service / phone number: [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
-5. Make a config file
+3. Make a Twilio account / messaging service / phone number: [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
+4. Make a config file
 
     ```
     cp config.js.example config.js
     ```
 
-6. Write your information to the config file
+5. Write your information to the config file
 
   | Config var | Explanation                                                 |
   |------------|-------------------------------------------------------------|
@@ -49,7 +42,7 @@ This script automatically checks the Global Entry interview schedule for your gi
 
   Optional: you can also add Twitter OAuth credentials to post to Twitter.
 
-7. Set up a cronjob to run the script
+6. Set up a cronjob to run the script
 
     ```
     crontab -e
@@ -68,7 +61,7 @@ This script automatically checks the Global Entry interview schedule for your gi
     */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
     ```
 
-8. You should be all set.
+7. You should be all set.
 
 ## GOES center codes
 
