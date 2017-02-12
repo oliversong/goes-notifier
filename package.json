@@ -1,6 +1,6 @@
 {
   "name": "goes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Goes text subscriber",
   "main": "index.js",
   "author": "Oliver Song",
