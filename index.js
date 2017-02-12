@@ -122,7 +122,6 @@ casper.then(function() {
   this.waitForSelector(".entry");
   // grab onclick function of the first element because it has a date embedded
   var onClickFunction = this.getElementsAttribute('.entry', 'onclick');
-  // var customDateFormat = /[0-9]{12}/.exec(onClickFunction);
   var d = /(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/.exec(onClickFunction);
   var rawDate = d[1] + '/' + d[2] + '/' + d[3] + ' ' + d[4] + ':' + d[5]; // 2017/01/01 00:00
   providedDay = new Date(Date.parse(rawDate));
