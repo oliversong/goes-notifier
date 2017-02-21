@@ -105,14 +105,14 @@ casper.then(function() {
 });
 
 casper.then(function() {
-  this.echo('Waiting on airport dropdown...');
-  this.waitForSelector('#selectedEnrollmentCenter');
+  this.echo('Waiting on airport table...');
+  this.waitForSelector('.sectionheader');
 });
 
 casper.then(function() {
-  this.echo('Airport dropdown found, selecting next...');
+  this.echo('Airport table found, selecting next...');
   this.evaluate(function(a) {
-    $('#selectedEnrollmentCenter').val(a);
+    $('input[value=' + a + ']').click();
     $('input[name=next]').click();
   }, airport);
 });
