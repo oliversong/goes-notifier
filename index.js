@@ -28,6 +28,13 @@ var serviceSid = config.twilio.serviceSid;
 var authToken = config.twilio.authToken;
 var toNumber = config.twilio.toNumber;
 var fromNumber = config.twilio.fromNumber;
+var twilioLinked = (
+  accountSid &&
+  serviceSid &&
+  authToken &&
+  toNumber &&
+  fromNumber
+);
 var twitterLinked = (
   config.twitter.accessToken &&
   config.twitter.accessTokenSecret &&
@@ -156,7 +163,7 @@ casper.then(function() {
 });
 
 casper.then(function() {
-  if (notify) {
+  if (twilioLinked && notify) {
     this.echo('Sending twilio request...');
     this.open(
       'https://' + accountSid + ':' + authToken + '@' +
