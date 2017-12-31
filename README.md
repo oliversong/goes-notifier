@@ -1,6 +1,8 @@
-# GOES notifier
+# GOES notifier [DEPRECATED]
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![GitHub version](https://badge.fury.io/gh/oliversong%2Fgoes-notifier.svg)](https://badge.fury.io/gh/oliversong%2Fgoes-notifier)
+
+**Please note: The Global Entry site switching to login.gov has deprecated this repo. Please see https://github.com/guoguo12/global-entry-bot for a working solution.**
 
 Currently live at: https://twitter.com/GOESbot
 
@@ -15,66 +17,66 @@ This script automatically checks the Global Entry interview schedule for your gi
 1. Clone this repo
 2. Install local dependencies
 
-    ```
-    npm install
-    ```
+   ```
+   npm install
+   ```
 
 3. Install global dependencies: casper, phantom
 
-    ```
-    npm install -g phantomjs
-    npm install -g casperjs
-    ```
+   ```
+   npm install -g phantomjs
+   npm install -g casperjs
+   ```
 
 4. Make a Twilio account / messaging service / phone number: [https://www.twilio.com/try-twilio](https://www.twilio.com/try-twilio)
 5. Make a config file
 
-    ```
-    cp config.js.example config.js
-    ```
+   ```
+   cp config.js.example config.js
+   ```
 
 6. Write your information to the config file
 
-  | Config var | Explanation                                                 |
-  |------------|-------------------------------------------------------------|
-  | username   | your GOES username                                          |
-  | password   | your GOES password                                          |
-  | airport    | code for the airport you want to subscribe to (SFO is 5446) |
-  | threshold  | number of days to check                                     |
-  | accountSid | your Twilio account SID                                     |
-  | authToken  | your Twilio production auth token                           |
-  | serviceSid | your Twilio Messaging service                               |
-  | toNumber   | the phone number you want to be sending texts to            |
-  | fromNumber | your Twilio phone number                                    |
+| Config var | Explanation                                                 |
+| ---------- | ----------------------------------------------------------- |
+| username   | your GOES username                                          |
+| password   | your GOES password                                          |
+| airport    | code for the airport you want to subscribe to (SFO is 5446) |
+| threshold  | number of days to check                                     |
+| accountSid | your Twilio account SID                                     |
+| authToken  | your Twilio production auth token                           |
+| serviceSid | your Twilio Messaging service                               |
+| toNumber   | the phone number you want to be sending texts to            |
+| fromNumber | your Twilio phone number                                    |
 
-  Optional: you can also add Twitter OAuth credentials to post to Twitter.
+Optional: you can also add Twitter OAuth credentials to post to Twitter.
 
 7. Set up a cronjob to run the script
 
-    ```
-    crontab -e
-    ```
+   ```
+   crontab -e
+   ```
 
-    then add
+   then add
 
-    ```
-    */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
-    ```
+   ```
+   */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
+   ```
 
-    Common pitfall: your cron setup may or may not have PATH set up correctly. If it doesn't, you need to set PATH to include the directory where your `casperjs` cli is located. You can find this out with `which casperjs`.
+   Common pitfall: your cron setup may or may not have PATH set up correctly. If it doesn't, you need to set PATH to include the directory where your `casperjs` cli is located. You can find this out with `which casperjs`.
 
-    ```
-    PATH=/usr/local/bin
-    */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
-    ```
+   ```
+   PATH=/usr/local/bin
+   */5 * * * * cd /PATH/TO/DIRECTORY/ && ./goes.sh
+   ```
 
 8. You should be all set.
 
 ## GOES center codes
 
 | ID    | Enrollment Center Name                                                                                                                |
-|-------|---------------------------------------------------------------------------------------------------------------------------------------|
-| 8040  | Albuquerque Enrollment Center - Albuquerque International Sunport 2200 Sunport Blvd SE   Albuquerque NM 87106                         |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 8040  | Albuquerque Enrollment Center - Albuquerque International Sunport 2200 Sunport Blvd SE Albuquerque NM 87106                           |
 | 6580  | American Express - New York - 0 UNAVAILABLE NEW YORK NY 99999 US                                                                      |
 | 7540  | Anchorage Enrollment Center - Ted Stevens International Airport 4600 Postmark Drive RM NA 207 Anchorage                               |
 | 5182  | Atlanta International Global Entry EC - 2600 Maynard H. Jackson Jr. Int'l Terminal Maynard H. Jackson Jr. Blvd.                       |
@@ -92,24 +94,24 @@ This script automatically checks the Global Entry interview schedule for your gi
 | 13801 | Champlain Global Entry Enrollment Center - 237 West Service Road Champlain NY 12919 US                                                |
 | 14321 | Charlotte-Douglas - DOWNSTAIRS LOCATION - 5501 Charlotte-Douglas International Airport Josh Birmingham Parkway                        |
 | 6880  | Charlotte-Douglas International Airport - 5501 Charlotte-Douglas International Airport Josh Birmingham Parkway                        |
-| 11981 | Chicago Field Office Enrollment Center - 610 Closed until further notice Closed until futher notice  Chicago                          |
-| 5183  | Chicago O'Hare International Global Entry EC  - 10000 Bessie Coleman Drive Terminal 5 Lower Level Chicago                             |
+| 11981 | Chicago Field Office Enrollment Center - 610 Closed until further notice Closed until futher notice Chicago                           |
+| 5183  | Chicago O'Hare International Global Entry EC - 10000 Bessie Coleman Drive Terminal 5 Lower Level Chicago                              |
 | 7680  | Cincinnati Enrollment Center - 4243 Olympic Blvd. Suite. 210 Erlanger KY 41018 US                                                     |
 | 9180  | Cleveland U.S. Customs and Border Protection - Customs & Border Protection 6747 Engle Road Middleburg Heights                         |
 | 5300  | Dallas-Fort Worth Intl Airport Global Entry - DFW International Airport - Terminal D DFW Airport TX 75261                             |
-| 14161 |  DBX-SF -                                                                                                                             |
+| 14161 | DBX-SF -                                                                                                                              |
 | 14021 | DCL2017 - This is a private event.                                                                                                    |
 | 6940  | Denver International Airport - 8400 Denver International Airport Pena Boulevard Denver CO 80249 US                                    |
 | 5223  | Derby Line Enrollment Center - 84 Main Street Derby Line VT 08530 US                                                                  |
 | 14421 | DESIGNTRAVEL2017 -                                                                                                                    |
 | 5023  | Detroit Enrollment Center - 2810 WEST FORT STREET BUILDING B DETROIT MI 48226 US                                                      |
 | 5320  | Detroit Metro Airport Global Entry - 601 Detroit North Terminal Rogell Dr. Suite 1271 Detroit MI 48242                                |
-| 14281 |  DLGA GO EVENT -                                                                                                                      |
-| 6920  |  Doha International Airport - Hamad International Airport Doha QA                                                                     |
+| 14281 | DLGA GO EVENT -                                                                                                                       |
+| 6920  | Doha International Airport - Hamad International Airport Doha QA                                                                      |
 | 8100  | Douglas Enrollment Center - 1012 G Avenue Suite 107 Douglas AZ 85607 US                                                               |
 | 5032  | Edmonton Enrollment Center - 1000 Airport Road Edmonton International Airport Edmonton AB T9E0V3 CA                                   |
 | 14361 | EGESBOS2017 -                                                                                                                         |
-| 5005  | El Paso Enrollment Center - 797 S. Zaragoza Rd. Bldg.  A El Paso TX 79907 US                                                          |
+| 5005  | El Paso Enrollment Center - 797 S. Zaragoza Rd. Bldg. A El Paso TX 79907 US                                                           |
 | 14301 | EMRSN2017 -                                                                                                                           |
 | 14381 | Fairbanks Enrollment Center - 6450 Airport Way - Suite 13 Room 1320A Fairbanks AK 99709 US                                            |
 | 14441 | FOLA 020817-ROS -                                                                                                                     |
@@ -122,44 +124,44 @@ This script automatically checks the Global Entry interview schedule for your gi
 | 14081 | GenElect2017 - This is a private event.                                                                                               |
 | 9101  | Grand Portage - 9403 E Highway 61 Grand Portage MN 55605 US                                                                           |
 | 9140  | Guam International Airport - 355 Chalan PasaHeru Suite B 224-B Tamuning GU 96913 US                                                   |
-| 14501 |  GULFAERO -                                                                                                                           |
+| 14501 | GULFAERO -                                                                                                                            |
 | 14481 | Gulfport-Biloxi Global Entry Enrollment Center - Gulfport-Biloxi International Airport 14035 Airport Road                             |
-| 5031  | Halifax Enrollment Center - U.S. Customs and Border Protection 1 Bell Boulevard  Comp  1666 Halifax Intl Airport                      |
-| 5001  | Hidalgo Enrollment Center - 5911 SOUTH STEWART RD   MISSION TX 78572 US                                                               |
+| 5031  | Halifax Enrollment Center - U.S. Customs and Border Protection 1 Bell Boulevard Comp 1666 Halifax Intl Airport                        |
+| 5001  | Hidalgo Enrollment Center - 5911 SOUTH STEWART RD MISSION TX 78572 US                                                                 |
 | 5340  | Honolulu Enrollment Center - 300 Rodgers Blvd Honolulu HI 96819 US                                                                    |
 | 5101  | Houlton Enrollment Center - 1403 Route 95 Belleville NB E7M4Z9 CA                                                                     |
 | 7620  | Houston Central Library - 500 McKinney St. Houston TX 77002 US                                                                        |
 | 5141  | Houston Intercontinental Global Entry EC - 3870 North Terminal Road Terminal E Houston TX 77032 US                                    |
-| 7480  |  Houston Term E - BOARDING PASS REQUIRED TO ENT     - Sterile Corridor requires Boarding Pass IAH Terminal E                          |
-| 14242 | HU-GSS1   -                                                                                                                           |
+| 7480  | Houston Term E - BOARDING PASS REQUIRED TO ENT - Sterile Corridor requires Boarding Pass IAH Terminal E                               |
+| 14242 | HU-GSS1 -                                                                                                                             |
 | 14243 | HU-GSS2 -                                                                                                                             |
 | 5160  | International Falls Enrollment Center - 312 Highway 11 East International Falls MN 56649 US                                           |
 | 14181 | International Falls Global Entry Enrollment Center - 312 Highway 11 East International Falls MN 56649                                 |
 | 5140  | JFK International Global Entry EC - JFK International Airport Terminal 4 IAT Jamaica NY 11430 US                                      |
 | 12781 | Kansas City Enrollment Center - 90 Beirut Circle Terminal C Gate 90 Kansas City MO 64153 US                                           |
-| 5520  | Lansdowne ON  - 664 Highway 137 Hill Island Lansdowne ON K0E1L0 CA                                                                    |
+| 5520  | Lansdowne ON - 664 Highway 137 Hill Island Lansdowne ON K0E1L0 CA                                                                     |
 | 5004  | Laredo Enrollment Center - 0 Lincoln Juarez Bridge Bldg.2 Laredo TX 780443130 US                                                      |
 | 5360  | Las Vegas Enrollment Center - 5757 Wayne Newton Blvd Terminal 3 Las Vegas NV 89119 US                                                 |
 | 14561 | LMT2017 -                                                                                                                             |
 | 13561 | London - US Embassy - 24 Grosvenor Square US Embassy London W1A 2LQ GB                                                                |
-| 8920  | Los Angeles -Long Beach Seaport  - 301 E. Ocean Blvd  Room 805 Long Beach CA 90802 US                                                 |
+| 8920  | Los Angeles -Long Beach Seaport - 301 E. Ocean Blvd Room 805 Long Beach CA 90802 US                                                   |
 | 5180  | Los Angeles International Global Entry EC - 380 World Way Tom Bradley International Terminal Los Angeles                              |
 | 13621 | Memphis International Airport Global Enrollment Ce - 2491 Winchester Suite 230 Memphis TN 38116 US                                    |
 | 5181  | "Miami International Global Entry EC - 4200 NW 21st Street Miami International Airport Conc. ""J"" Miami"                             |
 | 7740  | Milwaukee Enrollment Center - 4915 S Howell Ave. 2nd floor Milwaukee WI 53207 US                                                      |
 | 6840  | Minneapolis - St. Paul Global Entry EC - 4300 Glumack Drive St. Paul MN 55111 US                                                      |
 | 11000 | Moline Quad Cities International Airport - 3300 69th Ave Quad Cities International Airport Moline IL 61265                            |
-| 5028  | Montreal Enrollment Center - 1 Pierre E Trudeau International Airport  975  Blvd Romeo Vachon. Room T1476                             |
+| 5028  | Montreal Enrollment Center - 1 Pierre E Trudeau International Airport 975 Blvd Romeo Vachon. Room T1476                               |
 | 10260 | Nashville Enrollment Center - 612 Hangar Lane Suite 114 Nashville TN 37217 US                                                         |
 | 9740  | New Orleans Enrollment Center - 900 Airline Drive Kenner LA 70062 US                                                                  |
-| 5444  |  Newark Global Entry Enrollment Center - Newark Liberty International Airport Terminal B - International Arrivals Area                |
+| 5444  | Newark Global Entry Enrollment Center - Newark Liberty International Airport Terminal B - International Arrivals Area                 |
 | 5161  | Niagara Falls Enrollment Center - 2250 WHIRLPOOL ST. NIAGARA FALLS NY 14305 US                                                        |
 | 14401 | NIKE2017 -                                                                                                                            |
 | 5007  | Nogales Enrollment Center - 9 N. GRAND AVENUE NOGALES AZ 85621 US                                                                     |
 | 5380  | Orlando Global Entry Enrollment Center - 1 Orlando International Airport Airport Blvd Orlando FL 32827                                |
 | 5025  | Ottawa Enrollment Center - 140 Thad Johnson Private Suite 102 Ottawa Cargo Services Ottawa ON K1V0R4                                  |
 | 5100  | Pembina Enrollment Center - 10980 Interstate 29 N Pembina ND 58271 US                                                                 |
-| 11002 | Peoria International Airport - 5701 W. Smithville Road  Suite 700 Bartonville IL 61607 US                                             |
+| 11002 | Peoria International Airport - 5701 W. Smithville Road Suite 700 Bartonville IL 61607 US                                              |
 | 5445  | Philadelphia Global Entry Enrollment Center - PHILADELPHIA INTL AIRPORT TERMINAL A WEST 3RD FLOOR PHILADELPHIA                        |
 | 7160  | Phoenix Sky Harbor Global Entry Enrollment Center - CBP-Global Enrollment Center 3400 E. Sky Harbor Blvd                              |
 | 9200  | Pittsburgh International Airport - 1000 Airport Boulevard Ticketing Level Pittsburgh PA 15231 US                                      |
@@ -168,7 +170,7 @@ This script automatically checks the Global Entry interview schedule for your gi
 | 7960  | Portland OR Enrollment Center - 7000 PDX AIRPORT Room T3352 Portland OR 97218 US                                                      |
 | 14261 | RGBOS2017 -                                                                                                                           |
 | 11001 | Rockford-Chicago International Airport - 50 Airport Drive Chicago Rockford International Airport Rockford                             |
-| 13981 |  RTAA Board -                                                                                                                         |
+| 13981 | RTAA Board -                                                                                                                          |
 | 7600  | Salt Lake City International Airport - 3850 West Terminal Dr International Arrivals Terminal Salt Lake City                           |
 | 7520  | San Antonio International Airport - 9800 Airport Boulevard Suite 1101 San Antonio TX 78216 US                                         |
 | 5002  | San Diego -Otay Mesa Enrollment Center - 2500 Paseo Internacional San Diego CA 92154 US                                               |
@@ -179,21 +181,21 @@ This script automatically checks the Global Entry interview schedule for your gi
 | 8060  | San Ysidro Enrollment Center - 405 VIRGINIA AVE SAN YSIDRO CA 92173 US                                                                |
 | 5447  | Sanford Global Entry Enrollment Center - 1100 Red Cleveland Blvd Sanford FL 32773 US                                                  |
 | 5080  | Sault Ste Marie Enrollment Center - 900 International Bridge Plaza Sault Ste. Marie MI 49783 US                                       |
-| 5420  |  SeaTac International Airport Global Entry EC - CBP Global Entry Office  SeaTac International Airport  Seattle                        |
-| 5040  | Seattle Urban Enrollment Center - 7277 PERIMETER ROAD SOUTH  RM 116 KING COUNTY INTERNATIONAL AIRPORT BOEING FIELD                    |
+| 5420  | SeaTac International Airport Global Entry EC - CBP Global Entry Office SeaTac International Airport Seattle                           |
+| 5040  | Seattle Urban Enrollment Center - 7277 PERIMETER ROAD SOUTH RM 116 KING COUNTY INTERNATIONAL AIRPORT BOEING FIELD                     |
 | 9040  | Singapore U.S. Embassy - U.S. Embassy 27 Napier Road Singapore SG                                                                     |
-| 12021 | St. Louis Enrollment Center - 10701 Lambert Intl Blvd Terminal 2   St. Louis MO 63145 US                                              |
+| 12021 | St. Louis Enrollment Center - 10701 Lambert Intl Blvd Terminal 2 St. Louis MO 63145 US                                                |
 | 5120  | Sweetgrass Enrollment Center - 39825 FAST Enrollment Center 39825 Interstate 15 North Sweetgrass MT 59484                             |
 | 8020  | Tampa Enrollment Center - Tampa International Airport 4100 George J Bean Outbound Pkwy Tampa FL 33607                                 |
-| 5027  | Toronto Enrollment Center - 6301 Silver Dart Drive  Terminal One-Depatures Level Mississauga ON L5P1B2                                |
-| 12421 | Toronto Enrollment Center AESC - 2935 Convair Drive Airport Emergency Support Centre  Mississauga ON L5P1B2                           |
+| 5027  | Toronto Enrollment Center - 6301 Silver Dart Drive Terminal One-Depatures Level Mississauga ON L5P1B2                                 |
+| 12421 | Toronto Enrollment Center AESC - 2935 Convair Drive Airport Emergency Support Centre Mississauga ON L5P1B2                            |
 | 14143 | Travel AAA - 10220 Regency Circle Marriott Regency Hotel Omaha NE 68114 US                                                            |
-| 14142 | Travel and Transport  - 16950 Wright Plaza Suite 151 Travel Design Lounge by Travel and Transport                                     |
+| 14142 | Travel and Transport - 16950 Wright Plaza Suite 151 Travel Design Lounge by Travel and Transport                                      |
 | 9240  | Tucson Enrollment Center - 7150 S. Tucson Blvd Tucson AZ 85756 US                                                                     |
 | 6480  | U.S. Custom House - Bowling Green - 1 BOWLING GREEN NEW YORK NY 10004 US                                                              |
 | 5026  | Vancouver Enrollment Center - 3211 Grant McConachie Way Vancouver International Airport Richmond BC V7B1Y9                            |
 | 5041  | Vancouver Urban Enrollment Center - 1611 Main Street 4th Floor VANCOUVER BC V6A2W5 CA                                                 |
-| 5060  | Warroad Enrollment Center  - 41059 Warroad Enrollment Center State Hwy 313 N Warroad MN 56763 US                                      |
+| 5060  | Warroad Enrollment Center - 41059 Warroad Enrollment Center State Hwy 313 N Warroad MN 56763 US                                       |
 | 9300  | Warwick RI Enrollment Center - Warwick RI Enrollment Center 300 Jefferson Boulevard Suite 106 Warwick                                 |
 | 5142  | Washington Dulles International Global Entry EC - 22685 International Arrivals- Main Terminal Washington Dulles International Airport |
 | 8120  | Washington DC Enrollment Center - 1300 Pennsylvania Avenue NW Washington DC 20229 US                                                  |
@@ -201,6 +203,7 @@ This script automatically checks the Global Entry interview schedule for your gi
 | 5029  | Winnipeg Enrollment Center - 1970 Winnipeg NEXUS Office Wellington Room 1074 Winnipeg MB R3H0E3 CA                                    |
 
 ## License
+
 MIT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
